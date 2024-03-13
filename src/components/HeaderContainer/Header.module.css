@@ -1,0 +1,29 @@
+.Header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: snow;
+    height: 100px;
+}
+
+.Header a {
+    text-decoration: none;
+    color: snow;
+    font-size: 35px;
+}
+
+.Header a:hover {
+    color: cornflowerblue;
+}
+
+.Header a[class='active'] {
+    color: coral;
+}
+
+.Header h1 {
+    color: deepskyblue;
+    font-family: Baskerville, sans-serif;
+    font-size: 50px;
+}
