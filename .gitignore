@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.idea
+ts_react_mini_project_movies_redux.iml
+package-lock.json
