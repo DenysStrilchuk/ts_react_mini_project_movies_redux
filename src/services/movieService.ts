@@ -4,7 +4,7 @@ import {apiService} from "./apiService";
 import {urls} from "../constants";
 
 const movieService = {
-    getAll: (page:number):IRes<IMovie[]> => apiService.get(urls.movie.base, {params:{page}}),
+    getAll: (page:number):IRes<{ results: IMovie[]}> => apiService.get(urls.movie.base, {params:{page}}),
     getByMovieId: (movieId: number):IRes<IMovie> => apiService.get(urls.movieDetails.movieById(movieId))
 }
 

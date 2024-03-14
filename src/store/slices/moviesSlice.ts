@@ -5,7 +5,7 @@ import {movieService} from "../../services/movieService";
 
 
 interface IState {
-    page: number;
+    page: number | null;
     movies: IMovie[];
 }
 
@@ -14,12 +14,12 @@ const initialState: IState = {
     movies: [],
 };
 
-const getAll = createAsyncThunk<IMovie[], number>(
+const getAll = createAsyncThunk<{ results: IMovie[]}, number>(
     'moviesSlice/getAll',
     async (page, { rejectWithValue }) => {
         try {
             const { data } = await movieService.getAll(page);
-            return data.results;
+            return data
         } catch (e) {
             const err = e as AxiosError;
             return rejectWithValue(err.response.data);
@@ -34,7 +34,9 @@ const moviesSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload;
+                const {results} = action.payload;
+                state.movies = results
+
 
                 console.log("Updated movies state:", state.movies);
             })
