@@ -5,28 +5,27 @@ import {movieService} from "../../services/movieService";
 
 
 interface IState {
-    page: number | null;
-    movies: IMovie[]
+    page: number;
+    movies: IMovie[];
 }
 
 const initialState: IState = {
     page: null,
-    movies: []
-}
+    movies: [],
+};
 
-const getAll = createAsyncThunk<{ page: number, results: IMovie[] },number>(
+const getAll = createAsyncThunk<IMovie[], number>(
     'moviesSlice/getAll',
-    async (page,{rejectWithValue}) => {
+    async (page, { rejectWithValue }) => {
         try {
-            const {data} = await movieService.getAll(page)
-            console.log('Data from movieService.getAll:', data);
-            return { page, results: data }
-        }catch (e) {
-            const err = e as AxiosError
-            return rejectWithValue(err.response.data)
+            const { data } = await movieService.getAll(page);
+            return data.results;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response.data);
         }
     }
-)
+);
 
 const moviesSlice = createSlice({
     name: 'movieSlice',
@@ -35,20 +34,19 @@ const moviesSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                const {page, results} = action.payload
-                state.page = page
-                state.movies = results
+                state.movies = action.payload;
+
                 console.log("Updated movies state:", state.movies);
             })
-})
+});
 
-const {reducer: moviesReducer, actions} = moviesSlice;
-const moviesActions  = {
+const { reducer: moviesReducer, actions } = moviesSlice;
+const moviesActions = {
     ...actions,
     getAll
-}
+};
 
 export {
     moviesReducer,
     moviesActions
-}
+};
