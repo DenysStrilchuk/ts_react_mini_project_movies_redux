@@ -1,39 +1,20 @@
-import {useAppDispatch, useAppSelector} from "../../../hooks";
-import {moviesActions} from "../../../store";
-import {useSearchParams} from "react-router-dom";
-import {useEffect} from "react";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { moviesActions } from "../../../store";
+import { useEffect } from "react";
+import { usePageQuery } from "../../../hooks";
 
 const MoviesPagination = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const pageParam = searchParams.get('page');
-    const page = pageParam ? parseInt(pageParam) : 1;
+    const { page, prevPage, nextPage, setPage } = usePageQuery();
     const { total_pages } = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!pageParam) {
-            setSearchParams({ page: '1' });
-        }
-    }, [pageParam, setSearchParams]);
-
-    const prevPage = async () => {
-        if (page && page > 1) {
-            await dispatch(moviesActions.getAll(page - 1));
-            setSearchParams({ page: (page - 1).toString() });
-        }
-    }
-    const nextPage = async () => {
-        if (page && total_pages && page < total_pages) {
-            await dispatch(moviesActions.getAll(page + 1));
-            setSearchParams({ page: (page + 1).toString() });
-        }
-    }
+        dispatch(moviesActions.getAll(page));
+    }, [page, dispatch]);
 
     const handlePageClick = (pageNumber: number) => {
-        dispatch(moviesActions.getAll(pageNumber));
-        setSearchParams({ page: pageNumber.toString() });
+        setPage(pageNumber.toString());
     };
-
 
     return (
         <div>
@@ -48,4 +29,4 @@ const MoviesPagination = () => {
     );
 };
 
-export {MoviesPagination};
+export { MoviesPagination };

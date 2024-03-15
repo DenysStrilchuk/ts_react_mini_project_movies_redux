@@ -1,40 +1,39 @@
-import {useSearchParams} from "react-router-dom";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
-interface IPageQuery {
-    page: string | null;
-    prevPage: () => void;
-    nextPage: () => void;
-    setPage: (newPage: string) => void;
-}
+const usePageQuery = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const pageParam = searchParams.get('page');
+    const page = pageParam ? parseInt(pageParam) : 1;
 
-const usePageQuery = ():IPageQuery => {
-    const [query, setQuery] = useSearchParams({page:'1'});
-    const page = query.get('page');
+    useEffect(() => {
+        if (!pageParam) {
+            setSearchParams({ page: '1' });
+        }
+    }, [pageParam, setSearchParams]);
 
-    const prevPage = () => {
-        if (page !== null && !isNaN(+page)) {
-            const prevPage = Math.max(1, +page - 1).toString();
-            setQuery({page: prevPage});
+    const prevPage = async () => {
+        if (page && page > 1) {
+            setSearchParams({ page: (page - 1).toString() });
         }
     };
 
-    const nextPage = () => {
-        if (page !== null && !isNaN(+page)) {
-            const nextPage = (+page + 1).toString();
-            setQuery({page: nextPage});
+    const nextPage = async () => {
+        if (page) {
+            setSearchParams({ page: (page + 1).toString() });
         }
     };
 
     const setPage = (newPage: string) => {
-        setQuery({page: newPage});
+        setSearchParams({ page: newPage });
     };
 
-    return ({
-            page,
-            prevPage,
-            nextPage,
-            setPage
-    });
+    return {
+        page,
+        prevPage,
+        nextPage,
+        setPage
+    };
 };
 
-export {usePageQuery};
+export { usePageQuery };
