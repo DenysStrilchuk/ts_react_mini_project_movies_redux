@@ -1,0 +1,12 @@
+.MoviesModule {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.movies_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}

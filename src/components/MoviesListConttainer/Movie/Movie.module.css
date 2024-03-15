@@ -1,0 +1,23 @@
+.Movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 23%;
+    padding-top: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-family: "Malayalam MN", sans-serif;
+}
+
+.Movie:hover {
+    cursor: pointer;
+    background-color: deepskyblue;
+}
+
+.poster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
