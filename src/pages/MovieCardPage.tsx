@@ -1,7 +1,9 @@
+import {MoviesCard} from "../components/MoviesCardContainer";
+
 const MovieCardPage = () => {
     return (
         <div>
-            MovieCardPage
+            <MoviesCard/>
         </div>
     );
 };

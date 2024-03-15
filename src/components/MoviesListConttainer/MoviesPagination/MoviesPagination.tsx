@@ -1,7 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { moviesActions } from "../../../store";
 import { useEffect } from "react";
-import { usePageQuery } from "../../../hooks";
+
+import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
+import { moviesActions } from "../../../store";
+import css  from './Pagination.module.css';
+
 
 const MoviesPagination = () => {
     const { page, prevPage, nextPage, setPage } = usePageQuery();
@@ -17,14 +19,14 @@ const MoviesPagination = () => {
     };
 
     return (
-        <div>
-            <button onClick={prevPage}>prev</button>
+        <div className={css.Pagination}>
+            <button onClick={prevPage} className={css.button}>prev</button>
             {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
-                <button key={pageNumber} onClick={() => handlePageClick(pageNumber)}>
+                <button key={pageNumber} onClick={() => handlePageClick(pageNumber)} className={css.button}>
                     {pageNumber}
                 </button>
             ))}
-            <button onClick={nextPage}>next</button>
+            <button onClick={nextPage} className={css.button}>next</button>
         </div>
     );
 };
