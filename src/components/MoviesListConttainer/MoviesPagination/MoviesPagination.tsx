@@ -11,7 +11,6 @@ const MoviesPagination = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        // Устанавливаем начальное значение страницы при первой загрузке
         if (!pageParam) {
             setSearchParams({ page: '1' });
         }
