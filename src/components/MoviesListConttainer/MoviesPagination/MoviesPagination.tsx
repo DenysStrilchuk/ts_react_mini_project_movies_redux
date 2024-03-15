@@ -1,23 +1,38 @@
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {moviesActions} from "../../../store";
+import {useSearchParams} from "react-router-dom";
+import {useEffect} from "react";
 
 const MoviesPagination = () => {
-    const {page, total_pages} =useAppSelector(state => state.movies);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const pageParam = searchParams.get('page');
+    const page = pageParam ? parseInt(pageParam) : 1;
+    const { total_pages } = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
-    const prevPage = () => {
+    useEffect(() => {
+        // Устанавливаем начальное значение страницы при первой загрузке
+        if (!pageParam) {
+            setSearchParams({ page: '1' });
+        }
+    }, [pageParam, setSearchParams]);
+
+    const prevPage = async () => {
         if (page && page > 1) {
-            dispatch(moviesActions.getAll(page - 1));
+            await dispatch(moviesActions.getAll(page - 1));
+            setSearchParams({ page: (page - 1).toString() });
         }
     }
-    const nextPage = () => {
+    const nextPage = async () => {
         if (page && total_pages && page < total_pages) {
-            dispatch(moviesActions.getAll(page + 1));
+            await dispatch(moviesActions.getAll(page + 1));
+            setSearchParams({ page: (page + 1).toString() });
         }
     }
 
     const handlePageClick = (pageNumber: number) => {
         dispatch(moviesActions.getAll(pageNumber));
+        setSearchParams({ page: pageNumber.toString() });
     };
 
 
