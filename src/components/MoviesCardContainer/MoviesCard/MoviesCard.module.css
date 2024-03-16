@@ -1,0 +1,21 @@
+.backBtn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.backBtn button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: deepskyblue;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.backBtn button:hover {
+    background-color: #0056b3;
+}

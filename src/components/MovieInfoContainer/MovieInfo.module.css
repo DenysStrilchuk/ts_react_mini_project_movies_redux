@@ -1,0 +1,41 @@
+.MovieInfo {
+    margin-top: 15px;
+}
+
+.title {
+    font-size: 30px;
+    font-family: "Malayalam MN", sans-serif;
+    margin: 0 0 0 10px;
+}
+
+.infoBlock {
+    display: flex;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0 0 15px 25px;
+}
+
+.backdropStyle {
+    height: 550px;
+    margin: 15px 10px;
+}
+
+.overview {
+    font-size: 20px;
+    font-family: "Malayalam MN", sans-serif;
+    margin: 0 0 0 10px;
+}
+
+.summary {
+    font-family: "Malayalam MN", sans-serif;
+    margin: 0 0 0 10px;
+}
+
+.stars {
+    padding-left: 10px;
+}

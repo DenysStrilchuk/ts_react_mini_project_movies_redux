@@ -4,8 +4,8 @@ import {AxiosError} from "axios";
 import {movieService} from "../../services/movieService";
 
 
+
 interface IState {
-    movieId: number | null;
     page: number | null;
     movies: IMovie[];
     total_pages: number | null;
@@ -14,7 +14,6 @@ interface IState {
 }
 
 const initialState: IState = {
-    movieId: null,
     page: null,
     movies: [],
     total_pages: null,
@@ -37,9 +36,9 @@ const getAll = createAsyncThunk<{ results: IMovie[], total_pages: number, total_
 
 const getByMovieId = createAsyncThunk<IMovie, number>(
     'movieSlice/getByMovieId',
-    async (movieId, {rejectWithValue}) => {
+    async (id, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getByMovieId(movieId);
+            const {data} = await movieService.getByMovieId(id);
             return data
         } catch (e) {
             const err = e as AxiosError;
