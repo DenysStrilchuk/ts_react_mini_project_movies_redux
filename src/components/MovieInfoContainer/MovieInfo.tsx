@@ -3,6 +3,7 @@ import {FC, PropsWithChildren} from 'react';
 import {IGenre} from "../../interfaces";
 import css from './MovieInfo.module.css';
 import {MyCustomStarRating} from "../StarRatingContainer";
+import {Genre} from "../GenresInfoContainer";
 
 interface IProps extends PropsWithChildren {
     title: string,
@@ -12,17 +13,24 @@ interface IProps extends PropsWithChildren {
     release_date: string,
     runtime: number,
     genres: IGenre[];
+    onGenreClick: (genre: IGenre) => void;
 }
 
 const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
-                                   release_date, runtime, genres}) => {
+                                   release_date, runtime, genres, onGenreClick}) => {
     return (
         <div className={css.MovieInfo}>
             <div className={css.title}>{title}</div>
             <div className={css.infoBlock}>
                 <img className={css.backdropStyle} src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt={title}/>
                 <div className={css.info}>
-                    <h2>Runtime: {runtime}  minutes</h2>
+                    <h2>Genres:</h2>
+                    <div className={css.genres}>
+                        {genres.map((genre, index) => (
+                            <Genre key={index} genre={genre} onGenreClick={onGenreClick}/>
+                        ))}
+                    </div>
+                    <h2>Runtime: {runtime} minutes</h2>
                     <h2>Release date: {release_date}</h2>
                 </div>
             </div>

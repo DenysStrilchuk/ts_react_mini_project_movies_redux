@@ -1,7 +1,10 @@
-import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {useEffect} from "react";
+
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {genresAction} from "../../../store";
 import {Genre} from "../Genre";
+import css from './Genres.module.css';
+import {IGenre} from "../../../interfaces";
 
 const Genres = () => {
     const {genres} = useAppSelector(state => state.genres);
@@ -11,9 +14,12 @@ const Genres = () => {
         dispatch(genresAction.getAll())
     }, [dispatch]);
 
+    const handleGenreClick = (genre: IGenre) => {
+    };
+
     return (
-        <div>
-            {genres.map(genre => <Genre key={genre.id} genre={genre}/>)}
+        <div className={css.Genres}>
+            {genres.map(genre => <Genre key={genre.id} genre={genre} onGenreClick={handleGenreClick}/>)}
         </div>
     );
 };
