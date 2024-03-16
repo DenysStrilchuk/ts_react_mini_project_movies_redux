@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 
 import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
 import { moviesActions } from "../../../store";
@@ -18,15 +18,18 @@ const MoviesPagination = () => {
         setPage(pageNumber.toString());
     };
 
+    const isFirstPage = page === 1;
+    const isLastPage = page === total_pages;
+
     return (
         <div className={css.Pagination}>
-            <button onClick={prevPage} className={css.button}>prev</button>
+            <button onClick={prevPage} className={css.button} disabled={isFirstPage}>prev</button>
             {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
                 <button key={pageNumber} onClick={() => handlePageClick(pageNumber)} className={css.button}>
                     {pageNumber}
                 </button>
             ))}
-            <button onClick={nextPage} className={css.button}>next</button>
+            <button onClick={nextPage} className={css.button} disabled={isLastPage}>next</button>
         </div>
     );
 };

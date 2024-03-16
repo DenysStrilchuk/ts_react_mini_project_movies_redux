@@ -1,3 +1,4 @@
+export * from './GenresInfoContainer';
 export * from './HeaderContainer';
 export * from './MovieInfoContainer';
 export * from './MoviesCardContainer';
