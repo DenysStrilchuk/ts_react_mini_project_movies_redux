@@ -27,7 +27,7 @@ const getByGenreId = createAsyncThunk<
     async (id, { rejectWithValue }) => {
         try {
             const { data } = await genreService.getByGenreId(id);
-            return data
+            return {results: data.results, total_pages: data.results.length, total_results: data.results.length}
         } catch (e) {
             const err = e as AxiosError;
             return rejectWithValue(err.response.data);
@@ -68,7 +68,8 @@ const genresSlice = createSlice({
 const  {reducer:genresReducer, actions} = genresSlice;
 const genresAction = {
     ...actions,
-    getAll
+    getAll,
+    getByGenreId
 }
 
 export {
