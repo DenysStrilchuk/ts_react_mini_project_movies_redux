@@ -12,12 +12,10 @@ const MovieByGenre: FC<IProps> = ({movieByGenre}) => {
     const {title, poster_path, vote_average, id} = movieByGenre;
     const navigate = useNavigate();
     return (
-        <div>
-            <div onClick={() => navigate(`/movie/${id}`)} className={css.MovieByGenre}>
-                <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title}/>
-                <MyCustomStarRating rating={vote_average}/>
-                <div>{title}</div>
-            </div>
+        <div onClick={() => navigate(`/movie/${id}`)} className={css.MovieByGenre}>
+            <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title}/>
+            <MyCustomStarRating rating={vote_average}/>
+            <div>{title}</div>
         </div>
     );
 };

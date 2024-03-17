@@ -3,6 +3,7 @@
     flex-direction: column;
 }
 
+
 .movies_list {
     display: flex;
     flex-wrap: wrap;

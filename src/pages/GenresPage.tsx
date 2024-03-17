@@ -1,4 +1,4 @@
-import {Genres} from "../components";
+import {Genres, MoviesByGenresPagination} from "../components";
 import {Outlet} from "react-router-dom";
 
 const GenresPage = () => {
@@ -6,6 +6,7 @@ const GenresPage = () => {
         <div>
             <Genres/>
             <Outlet/>
+            <MoviesByGenresPagination/>
         </div>
     );
 };
