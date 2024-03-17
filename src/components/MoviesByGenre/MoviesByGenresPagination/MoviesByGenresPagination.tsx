@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
 import { genresAction } from "../../../store";
 import { useParams } from "react-router-dom";
-import css from "../../MoviesListConttainer/MoviesPagination/Pagination.module.css";
+import css from "./GenresPagination.module.css";
 
 const MoviesByGenresPagination = () => {
     const pageQuery = usePageQuery();
@@ -23,16 +23,20 @@ const MoviesByGenresPagination = () => {
     };
 
     return (
-        <div>
-            <button onClick={prevPage} disabled={isFirstPage}>Prev</button>
+        <div className={css.GenresPagination}>
+            <button className={css.button} onClick={prevPage} disabled={isFirstPage}>Prev</button>
             {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
-                <button key={pageNumber} onClick={() => handlePageClick(pageNumber)} className={css.button}>
+                <button
+                    key={pageNumber}
+                    onClick={() => handlePageClick(pageNumber)}
+                    className={`${css.button} ${pageNumber === page ? css.active : ''}`}
+                >
                     {pageNumber}
                 </button>
             ))}
-            <button onClick={nextPage} disabled={isLastPage}>Next</button>
+            <button className={css.button} onClick={nextPage} disabled={isLastPage}>Next</button>
         </div>
     );
 };
 
-export { MoviesByGenresPagination };
+export {MoviesByGenresPagination};

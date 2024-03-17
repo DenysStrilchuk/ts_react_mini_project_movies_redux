@@ -13,3 +13,12 @@
 .numbers {
     color: darkorange;
 }
+
+.genre_badge:hover {
+    background-color: cornflowerblue;
+}
+
+.active {
+    background-color: darkorange;
+    color: white;
+}

@@ -6,13 +6,13 @@ import {MovieByGenre} from "../MovieByGenre";
 import css from './MoviesByGenre.module.css';
 
 const MoviesByGenre = () => {
-    const {movies} = useAppSelector(state => state.genres);
+    const {movies,page} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
     const {id} = useParams<{ id?: string }>();
 
     useEffect(() => {
-        dispatch(genresAction.getByGenreId(parseInt(id)))
-    }, [dispatch,id]);
+        dispatch(genresAction.getByGenreId({ id: parseInt(id), page: page }));
+    }, [dispatch,id, page]);
 
     return (
         <div className={css.MoviesByGenre}>

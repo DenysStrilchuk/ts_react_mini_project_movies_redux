@@ -25,7 +25,11 @@ const MoviesPagination = () => {
         <div className={css.Pagination}>
             <button onClick={prevPage} className={css.button} disabled={isFirstPage}>prev</button>
             {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
-                <button key={pageNumber} onClick={() => handlePageClick(pageNumber)} className={css.button}>
+                <button
+                    key={pageNumber}
+                    onClick={() => handlePageClick(pageNumber)}
+                    className={`${css.button} ${pageNumber === page ? css.active : ''}`}
+                >
                     {pageNumber}
                 </button>
             ))}
@@ -34,4 +38,4 @@ const MoviesPagination = () => {
     );
 };
 
-export { MoviesPagination };
+export {MoviesPagination};
