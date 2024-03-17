@@ -9,6 +9,7 @@ interface IState {
     total_pages: number | null;
     total_results: number | null;
     movies: IMovie[];
+    activeGenreId: number | null;
 }
 
 const initialState: IState = {
@@ -16,7 +17,8 @@ const initialState: IState = {
     genres: [],
     total_pages: null,
     total_results: null,
-    movies: []
+    movies: [],
+    activeGenreId: null
 }
 
 const getByGenreId = createAsyncThunk<
@@ -51,7 +53,11 @@ const getAll = createAsyncThunk<{genres:IGenre[]},void>(
 const genresSlice = createSlice({
     name:'genresSlice',
     initialState,
-    reducers:{},
+    reducers: {
+        setActiveGenreId(state, action) {
+            state.activeGenreId = action.payload;
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
@@ -62,6 +68,7 @@ const genresSlice = createSlice({
                 state.movies = results;
                 state.total_pages = total_pages;
                 state.total_results = total_results;
+                state.activeGenreId = action.meta.arg.id;
             })
 })
 

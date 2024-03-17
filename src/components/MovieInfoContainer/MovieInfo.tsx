@@ -4,6 +4,7 @@ import {IGenre} from "../../interfaces";
 import css from './MovieInfo.module.css';
 import {MyCustomStarRating} from "../StarRatingContainer";
 import {Genre} from "../GenresInfoContainer";
+import {useAppSelector} from "../../hooks";
 
 interface IProps extends PropsWithChildren {
     title: string,
@@ -18,6 +19,7 @@ interface IProps extends PropsWithChildren {
 
 const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
                                    release_date, runtime, genres, onGenreClick}) => {
+    const activeGenreId = useAppSelector(state => state.genres.activeGenreId);
     return (
         <div className={css.MovieInfo}>
             <div className={css.title}>{title}</div>
@@ -27,7 +29,7 @@ const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
                     <h2>Genres:</h2>
                     <div className={css.genres}>
                         {genres.map((genre, index) => (
-                            <Genre key={index} genre={genre} onGenreClick={onGenreClick}/>
+                            <Genre key={index} genre={genre} onGenreClick={onGenreClick} isActive={genre.id === activeGenreId}/>
                         ))}
                     </div>
                     <h2>Runtime: {runtime} minutes</h2>

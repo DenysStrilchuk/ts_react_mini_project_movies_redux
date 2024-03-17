@@ -7,14 +7,17 @@ import {useNavigate} from "react-router-dom";
 interface IProps extends PropsWithChildren {
     genre:IGenre
     onGenreClick: (genre: IGenre) => void;
+    isActive: boolean;
 }
 
-const Genre: FC<IProps> = ({genre, onGenreClick}) => {
+const Genre: FC<IProps> = ({genre,  isActive}) => {
     const {id, name} = genre;
     const navigate = useNavigate();
     return (
         <div>
-            <Button className={css.genre_badge} onClick={() => navigate(`/genres/${id}`)} variant="primary">
+            <Button className={`${css.genre_badge} ${isActive ? css.active : ''}`}
+                    onClick={() => navigate(`/genres/${id}`)}
+                    variant="primary">
                 {name}<Badge className={css.numbers} bg="secondary"> 9</Badge>
             </Button>
         </div>

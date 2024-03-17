@@ -7,7 +7,7 @@ import css from './Genres.module.css';
 import {IGenre} from "../../../interfaces";
 
 const Genres = () => {
-    const {genres} = useAppSelector(state => state.genres);
+    const {genres, activeGenreId} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -15,11 +15,15 @@ const Genres = () => {
     }, [dispatch]);
 
     const handleGenreClick = (genre: IGenre) => {
+        dispatch(genresAction.setActiveGenreId(genre.id));
     };
 
     return (
         <div className={css.Genres}>
-            {genres.map(genre => <Genre key={genre.id} genre={genre} onGenreClick={handleGenreClick}/>)}
+            {genres.map(genre => <Genre key={genre.id}
+                                        genre={genre}
+                                        onGenreClick={handleGenreClick}
+                                        isActive={genre.id === activeGenreId}/>)}
         </div>
     );
 };

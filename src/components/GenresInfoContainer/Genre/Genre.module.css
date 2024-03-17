@@ -19,6 +19,7 @@
 }
 
 .active {
-    background-color: darkorange;
-    color: white;
+    background-color: #0056b3;
+    color: snow;
+    border: 1px solid #0056b3;
 }
