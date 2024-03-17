@@ -21,12 +21,12 @@ const initialState: IState = {
 
 const getByGenreId = createAsyncThunk<
     { results: IMovie[]; total_pages: number; total_results: number },
-    number>
+    { id: number; page: number }>
 (
     'genresSlice/getByGenreId',
-    async (id, { rejectWithValue }) => {
+    async ({ id, page }, { rejectWithValue }) => {
         try {
-            const { data } = await genreService.getByGenreId(id);
+            const { data } = await genreService.getByGenreId(id, page);
             return {results: data.results, total_pages: data.results.length, total_results: data.results.length}
         } catch (e) {
             const err = e as AxiosError;

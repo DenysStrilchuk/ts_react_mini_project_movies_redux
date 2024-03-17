@@ -1,34 +1,38 @@
-import {useAppDispatch, useAppSelector, usePageQuery} from "../../../hooks";
-import {useEffect} from "react";
-import {genresAction} from "../../../store";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
+import { genresAction } from "../../../store";
+import { useParams } from "react-router-dom";
 import css from "../../MoviesListConttainer/MoviesPagination/Pagination.module.css";
 
 const MoviesByGenresPagination = () => {
-    const { page, prevPage, nextPage, setPage } = usePageQuery();
-    const { total_pages } = useAppSelector(state => state.movies);
+    const pageQuery = usePageQuery();
+    const { page, prevPage, nextPage, setPage} = pageQuery;
+    const { total_pages } = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
+    const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
-        dispatch(genresAction.getByGenreId(page))
-    }, [dispatch, page]);
+        dispatch(genresAction.getByGenreId({ id: parseInt(id), page: page }));
+    }, [dispatch, id, page]);
+
+    const isFirstPage = page === 1;
+    const isLastPage = page === total_pages;
 
     const handlePageClick = (pageNumber: number) => {
         setPage(pageNumber.toString());
     };
 
-    const isFirstPage = page === 1;
-    const isLastPage = page === total_pages;
     return (
-        <div className={css.Pagination}>
-            <button onClick={prevPage} className={css.button} disabled={isFirstPage}>prev</button>
-            {Array.from({length: total_pages}, (_, i) => i + 1).map(pageNumber => (
+        <div>
+            <button onClick={prevPage} disabled={isFirstPage}>Prev</button>
+            {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
                 <button key={pageNumber} onClick={() => handlePageClick(pageNumber)} className={css.button}>
                     {pageNumber}
                 </button>
             ))}
-            <button onClick={nextPage} className={css.button} disabled={isLastPage}>next</button>
+            <button onClick={nextPage} disabled={isLastPage}>Next</button>
         </div>
     );
 };
 
-export {MoviesByGenresPagination};
+export { MoviesByGenresPagination };
