@@ -23,7 +23,7 @@ const Header = () => {
         <div className={css.Header}>
             <h1>Imovie</h1>
             <NavLink to={'movies'}>Movies</NavLink>
-            <NavLink to={'genres'}>Genres</NavLink>
+
             <div className={css.input_style}>
                 <input
                     type="text"
