@@ -8,16 +8,16 @@ const SearchMovies = () => {
     const dispatch = useAppDispatch();
     const [query, setQuery] = useState<string>("");
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-    };
-
     useEffect(() => {
         dispatch(searchActions.getAll(''))
     }, [dispatch]);
 
     const handleSearch = () => {
-        dispatch(searchActions.getAll(query));
+        dispatch(searchActions.getAll(query))
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
     };
 
     return (
