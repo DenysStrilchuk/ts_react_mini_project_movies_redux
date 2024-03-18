@@ -23,6 +23,7 @@
 
 .genres {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px;
