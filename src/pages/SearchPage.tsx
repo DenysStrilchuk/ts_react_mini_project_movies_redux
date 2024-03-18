@@ -1,7 +1,9 @@
+import {SearchMovies} from "../components";
+
 const SearchPage = () => {
     return (
         <div>
-            SearchPage
+            <SearchMovies/>
         </div>
     );
 };

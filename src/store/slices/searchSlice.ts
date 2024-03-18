@@ -5,14 +5,14 @@ import {AxiosError} from "axios";
 
 interface IState {
     page: number | null;
-    results: IMovie[];
+    movies: IMovie[];
     total_pages: number  | null;
     total_results: number | null;
 }
 
 const initialState:IState = {
     page: null,
-    results: [],
+    movies: [],
     total_pages: null,
     total_results: null
 }
@@ -38,13 +38,14 @@ const searchSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.results = action.payload
+                state.movies = action.payload
             })
 })
 
 const {reducer: searchReducer, actions} = searchSlice;
 const searchActions = {
-    ...actions
+    ...actions,
+    getAll
 }
 
 export {
