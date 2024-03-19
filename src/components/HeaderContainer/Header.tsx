@@ -22,7 +22,7 @@ const Header = () => {
         setQuery(e.target.value);
     };
     return (
-        <div className={`${css.Header} ${theme}`}>
+        <div className={`${css.Header} ${theme === 'dark' ? css.dark : css.light}`}>
             <h1>Imovie</h1>
             <NavLink to={'movies'}>Movies</NavLink>
 

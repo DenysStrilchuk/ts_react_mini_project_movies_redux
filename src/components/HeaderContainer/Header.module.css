@@ -58,11 +58,27 @@
 }
 
 .dark {
-    background-color: #333;
+    background-color: rgb(40,48,68);
     color: #fff;
 }
 
+.dark.Header a {
+    color: rgb(172,173,175);
+}
+
+.dark.Header a:hover {
+    color: cornflowerblue;
+}
+
 .light {
-    background-color: #fff;
+    background-color: rgb(246,248,255);
     color: #333;
+}
+
+.light.Header a {
+    color: rgb(26,51,100);
+}
+
+.light.Header a:hover {
+    color: #333; /* Змінюємо колір тексту для світлої теми */
 }

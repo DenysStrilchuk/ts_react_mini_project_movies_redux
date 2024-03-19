@@ -2,6 +2,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {RootState} from "../../../types";
 import {toggleTheme} from "../../../store";
 import ReactSwitch from "react-switch";
+import {useEffect} from "react";
 
 
 
@@ -11,10 +12,12 @@ const ThemeSwitcher = () => {
 
     const toggleThemeHandler = () => {
         dispatch(toggleTheme());
-        document.body.classList.toggle('dark', theme === 'dark');
-        document.body.classList.toggle('light', theme === 'light');
     };
 
+    useEffect(() => {
+        document.body.classList.toggle('dark', theme === 'dark');
+        document.body.classList.toggle('light', theme === 'light');
+    }, [theme]);
 
     return (
         <div>
