@@ -20,11 +20,12 @@ const MovieCard: FC<IProps> = ({movieCard}) => {
                 title={title}
                 overview={overview}
                 vote_average={vote_average}
-               genres={genres}
+                genres={genres}
                 backdrop_path={backdrop_path}
                 release_date={release_date}
                 runtime={runtime}
-                onGenreClick={handleGenreClick} />
+                onGenreClick={handleGenreClick}
+            />
         </div>
     );
 };

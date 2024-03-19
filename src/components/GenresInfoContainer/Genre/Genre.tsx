@@ -8,9 +8,10 @@ interface IProps extends PropsWithChildren {
     genre:IGenre
     onGenreClick: (genre: IGenre) => void;
     isActive: boolean;
+    count: number;
 }
 
-const Genre: FC<IProps> = ({genre,  isActive}) => {
+const Genre: FC<IProps> = ({genre,  isActive, count}) => {
     const {id, name} = genre;
     const navigate = useNavigate();
     return (
@@ -18,7 +19,7 @@ const Genre: FC<IProps> = ({genre,  isActive}) => {
             <Button className={`${css.genre_badge} ${isActive ? css.active : ''}`}
                     onClick={() => navigate(`/genres/${id}`)}
                     variant="primary">
-                {name}<Badge className={css.numbers} bg="secondary"> 9</Badge>
+                {name}<Badge className={css.numbers} bg="secondary"> {count}</Badge>
             </Button>
         </div>
     );

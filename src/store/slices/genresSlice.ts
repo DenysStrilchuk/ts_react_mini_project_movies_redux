@@ -10,6 +10,7 @@ interface IState {
     total_results: number | null;
     movies: IMovie[];
     activeGenreId: number | null;
+    genreMoviesCount: { [genreId: number]: number };
 }
 
 const initialState: IState = {
@@ -18,7 +19,8 @@ const initialState: IState = {
     total_pages: null,
     total_results: null,
     movies: [],
-    activeGenreId: null
+    activeGenreId: null,
+    genreMoviesCount: {}
 }
 
 const getByGenreId = createAsyncThunk<
@@ -69,6 +71,7 @@ const genresSlice = createSlice({
                 state.total_pages = total_pages;
                 state.total_results = total_results;
                 state.activeGenreId = action.meta.arg.id;
+                state.genreMoviesCount[action.meta.arg.id] = total_results;
             })
 })
 

@@ -7,7 +7,7 @@ import css from './Genres.module.css';
 import {IGenre} from "../../../interfaces";
 
 const Genres = () => {
-    const {genres, activeGenreId} = useAppSelector(state => state.genres);
+    const {genres, activeGenreId, genreMoviesCount} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -23,7 +23,9 @@ const Genres = () => {
             {genres.map(genre => <Genre key={genre.id}
                                         genre={genre}
                                         onGenreClick={handleGenreClick}
-                                        isActive={genre.id === activeGenreId}/>)}
+                                        isActive={genre.id === activeGenreId}
+                                        count={genreMoviesCount[genre.id] || 0}
+            />)}
         </div>
     );
 };
