@@ -1,6 +1,7 @@
 import {FC, PropsWithChildren} from 'react';
-import {IMovie} from "../../../interfaces";
 import {useNavigate} from "react-router-dom";
+
+import {IMovie} from "../../../interfaces";
 import css from "./MovieByGenre.module.css";
 import {MyCustomStarRating} from "../../StarRatingContainer";
 

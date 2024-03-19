@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
 import { genresAction } from "../../../store";
-import { useParams } from "react-router-dom";
 import css from "./GenresPagination.module.css";
 
 const MoviesByGenresPagination = () => {
