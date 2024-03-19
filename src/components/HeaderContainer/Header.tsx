@@ -3,13 +3,15 @@ import {useState} from "react";
 
 import  css from './Header.module.css';
 import {searchActions} from "../../store";
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {ThemeSwitcher} from "../ThemeSwitcherContainer";
 
 
 const Header = () => {
     const [query, setQuery] = useState<string>("");
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const theme = useAppSelector(state => state.theme.mode);
 
     const handleSearch = () => {
         dispatch(searchActions.getAll(query))
@@ -20,7 +22,7 @@ const Header = () => {
         setQuery(e.target.value);
     };
     return (
-        <div className={css.Header}>
+        <div className={`${css.Header} ${theme}`}>
             <h1>Imovie</h1>
             <NavLink to={'movies'}>Movies</NavLink>
 
@@ -33,6 +35,7 @@ const Header = () => {
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>
+            <ThemeSwitcher/>
         </div>
     );
 };

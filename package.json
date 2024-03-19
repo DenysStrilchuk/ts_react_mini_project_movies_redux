@@ -21,7 +21,8 @@
     "react-hook-form": "^7.51.0",
     "joi": "^17.12.2",
     "star-rating-react-ts": "^1.1.4",
-    "react-bootstrap": "^2.10.1"
+    "react-bootstrap": "^2.10.1",
+    "react-switch": "^7.0.0"
 
 
   },

@@ -6,3 +6,4 @@ export * from './MoviesCardContainer';
 export * from './MoviesListConttainer';
 export * from './SearchMoviesContainer';
 export * from './StarRatingContainer';
+export * from './ThemeSwitcherContainer';
