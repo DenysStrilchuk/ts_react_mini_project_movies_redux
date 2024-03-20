@@ -3,7 +3,7 @@
     border: none;
     border-radius: 5px;
     padding: 10px 5px;
-    background-color: deepskyblue;
+    background-color: rgb(43,77,142);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
     font-size: 16px;
@@ -16,11 +16,12 @@
 }
 
 .genre_badge:hover {
-    background-color: cornflowerblue;
+    background-color: rgb(26,51,100);
+    border: 1px solid rgb(26,51,100);
 }
 
 .active {
-    background-color: #0056b3;
+    background-color: dodgerblue;
     color: snow;
-    border: 1px solid #0056b3;
+    border: 1px solid dodgerblue;
 }

@@ -6,18 +6,18 @@
 }
 
 .button {
-    background-color: deepskyblue;
+    background-color: rgb(43,77,142);
     color: snow;
-    border: 1px solid deepskyblue;
+    border: 1px solid rgb(43,77,142);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 5px 10px;
+    padding: 10px 15px;
     margin-right: 5px;
     cursor: pointer;
 }
 
 .button:hover {
-    background-color: cornflowerblue;
-    border: 1px solid cornflowerblue;
+    background-color: rgb(26,51,100);
+    border: 1px solid rgb(26,51,100);
 }
 
 .button:disabled {
@@ -26,7 +26,7 @@
 }
 
 .active {
-    background-color: #0056b3;
+    background-color: dodgerblue;
     color: snow;
-    border: 1px solid #0056b3;
+    border: 1px solid dodgerblue;
 }
