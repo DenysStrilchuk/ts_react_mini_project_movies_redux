@@ -11,7 +11,9 @@ const Genres = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(genresAction.getAll())
+        dispatch(genresAction.getAll()).then(() => {
+            dispatch(genresAction.getGenreMoviesCount());
+        });
     }, [dispatch]);
 
     const handleGenreClick = (genre: IGenre) => {
