@@ -27,8 +27,13 @@ const ThemeSwitcher = () => {
                     onChange={toggleThemeHandler}
                     onColor="#1e272e"
                     offColor="#dcdde1"
-                    checkedIcon={false}
-                    uncheckedIcon={false}
+                    checkedIcon={<img width="27" height="27" src="https://img.icons8.com/ultraviolet/40/sun--v1.png"
+                                      alt="sun--v1"/>
+                    }
+                    uncheckedIcon={<img width="28" height="28"
+                                        src="https://img.icons8.com/plasticine/100/crescent-moon.png"
+                                        alt="crescent-moon"/>
+                    }
                 />
             </label>
         </div>

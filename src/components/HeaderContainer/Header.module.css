@@ -44,6 +44,13 @@
     cursor: pointer;
 }
 
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .dark {
     background-color: rgb(40,48,68);
     color: #fff;
@@ -73,6 +80,10 @@
 .dark.input_style button:hover {
     background-color: rgb(26,51,100);
     color: rgb(254,254,254);
+}
+
+.dark.Header h4 {
+    color: rgb(172,173,175);
 }
 
 .light {
@@ -105,4 +116,10 @@
     background-color: rgb(26,51,100);
     color: rgb(254,254,254);
 }
+
+.light.Header h4 {
+    color: rgb(64,82,130);
+}
+
+
 
