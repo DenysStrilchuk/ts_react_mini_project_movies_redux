@@ -26,7 +26,7 @@ const Header = () => {
             <h1>Imovie</h1>
             <NavLink to={'movies'}>Movies</NavLink>
 
-            <div className={css.input_style}>
+            <div className={`${css.input_style} ${theme === 'dark' ? css.dark : css.light}`}>
                 <input
                     type="text"
                     placeholder="Search movies..."
