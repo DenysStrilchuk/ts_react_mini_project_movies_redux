@@ -17,19 +17,25 @@ const initialState:IState = {
     total_results: null
 }
 
-const getAll = createAsyncThunk<IMovie[], string>(
+const getAll = createAsyncThunk<IState, {query: string, page: number}>(
     'searchSlice/getAll',
-    async (query,{rejectWithValue}) => {
-        if (query.trim() !== "")
-        try {
-            const {data} = await searchService.getAll(query)
-            return data.results
-        }catch (e) {
-            const err = e as AxiosError;
-            return rejectWithValue(err.response.data)
+    async ({query, page}, {rejectWithValue}) => {
+        if (query.trim() !== "") {
+            try {
+                const {data} = await searchService.getAll(query, page);
+                return {
+                    page: data.page,
+                    movies: data.results,
+                    total_pages: data.total_pages,
+                    total_results: data.total_results
+                };
+            } catch (e) {
+                const err = e as AxiosError;
+                return rejectWithValue(err.response?.data);
+            }
         }
     }
-)
+);
 
 const searchSlice = createSlice({
     name:'searchSlice',
@@ -38,7 +44,10 @@ const searchSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload
+                state.page = action.payload.page;
+                state.movies = action.payload.movies;
+                state.total_pages = action.payload.total_pages;
+                state.total_results = action.payload.total_results;
             })
 })
 

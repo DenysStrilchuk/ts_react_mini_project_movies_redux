@@ -1,19 +1,11 @@
-import {useEffect} from "react";
-
-import {useAppDispatch, useAppSelector} from "../../../hooks";
-import {searchActions} from "../../../store";
+import {useAppSelector} from "../../../hooks";
 import {Movie} from "../../MoviesListConttainer";
 import css from './SearchMovies.module.css';
 
+
+
 const SearchMovies = () => {
-    const {movies} = useAppSelector(state => state.search);
-    const dispatch = useAppDispatch();
-
-
-    useEffect(() => {
-        dispatch(searchActions.getAll(''))
-    }, [dispatch]);
-
+    const { movies } = useAppSelector(state => state.search);
 
 
     return (

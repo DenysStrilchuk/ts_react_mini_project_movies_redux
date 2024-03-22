@@ -12,21 +12,20 @@ const usePageQuery = () => {
         }
     }, [pageParam, setQuery]);
 
-    const prevPage = async () => {
-        if (page && page > 1) {
-            setQuery({ page: (page - 1).toString() });
-        }
-    };
-
-    const nextPage = async () => {
-        if (page) {
-            setQuery({ page: (page + 1).toString() });
-        }
-    };
-
     const setPage = (newPage: string) => {
         setQuery({ page: newPage });
     };
+
+    const prevPage = () => {
+        if (page && page > 1) {
+            setPage((page - 1).toString());
+        }
+    };
+
+    const nextPage = () => {
+        setPage((page + 1).toString());
+    };
+
 
     return {
         page,
