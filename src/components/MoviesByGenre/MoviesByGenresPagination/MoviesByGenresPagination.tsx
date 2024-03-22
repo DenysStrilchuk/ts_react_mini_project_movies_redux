@@ -23,35 +23,48 @@ const MoviesByGenresPagination = () => {
         setPage(pageNumber.toString());
     };
 
-    const startPage = Math.max(1, page - 5);
+    let startPage = Math.max(1, page - 5);
     const endPage = Math.min(total_pages, page + 5);
 
-    const showEllipsis = total_pages > 6 && (endPage < total_pages);
-    const showLastPage = total_pages > 6 && (endPage < total_pages);
+    const showEllipsisStart = startPage > 1;
+    const showEllipsisEnd = endPage < total_pages;
+
+    if (page > endPage) {
+        startPage = Math.max(1, endPage - 5);
+    }
+
+    const showFirstButton = startPage > 1;
+    const showLastButton = endPage < total_pages;
 
     return (
         <div className={css.GenresPagination}>
-            <button className={css.button} onClick={prevPage} disabled={isFirstPage}>Prev</button>
-            {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map(pageNumber => (
+            <button className={css.button} onClick={prevPage} disabled={isFirstPage}>
+                Prev
+            </button>
+            {showFirstButton && (
+                <button className={css.button} onClick={() => handlePageClick(1)}>
+                    1
+                </button>
+            )}
+            {showEllipsisStart && <span className={css.ellipsis}>...</span>}
+            {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((pageNumber) => (
                 <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}
-                    className={`${css.button} ${pageNumber === page ? css.active : ''}`}
+                    className={`${css.button} ${pageNumber === page ? css.active : ""}`}
                 >
                     {pageNumber}
                 </button>
             ))}
-            {showEllipsis && <span className={css.ellipsis}>...</span>}
-            {showLastPage && (
-                <button
-                    key={total_pages}
-                    onClick={() => handlePageClick(total_pages)}
-                    className={`${css.button} ${total_pages === page ? css.active : ''}`}
-                >
+            {showEllipsisEnd && <span className={css.ellipsis}>...</span>}
+            {showLastButton && (
+                <button className={css.button} onClick={() => handlePageClick(total_pages)}>
                     {total_pages}
                 </button>
             )}
-            <button className={css.button} onClick={nextPage} disabled={isLastPage}>Next</button>
+            <button className={css.button} onClick={nextPage} disabled={isLastPage}>
+                Next
+            </button>
         </div>
     );
 };
