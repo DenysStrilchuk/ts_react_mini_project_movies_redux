@@ -19,7 +19,7 @@ const Header = () => {
 
     const handleSearch = () => {
         dispatch(searchActions.getAll({query, page}))
-        navigate('search')
+        navigate(`search/${query}`);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
