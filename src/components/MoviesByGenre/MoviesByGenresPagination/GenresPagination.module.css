@@ -30,3 +30,7 @@
     color: snow;
     border: 1px solid dodgerblue;
 }
+
+.ellipsis {
+    margin: 0 10px 0 5px;
+}

@@ -23,10 +23,16 @@ const MoviesByGenresPagination = () => {
         setPage(pageNumber.toString());
     };
 
+    const startPage = Math.max(1, page - 5);
+    const endPage = Math.min(total_pages, page + 5);
+
+    const showEllipsis = total_pages > 6 && (endPage < total_pages);
+    const showLastPage = total_pages > 6 && (endPage < total_pages);
+
     return (
         <div className={css.GenresPagination}>
             <button className={css.button} onClick={prevPage} disabled={isFirstPage}>Prev</button>
-            {Array.from({ length: total_pages }, (_, i) => i + 1).map(pageNumber => (
+            {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map(pageNumber => (
                 <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}
@@ -35,6 +41,16 @@ const MoviesByGenresPagination = () => {
                     {pageNumber}
                 </button>
             ))}
+            {showEllipsis && <span className={css.ellipsis}>...</span>}
+            {showLastPage && (
+                <button
+                    key={total_pages}
+                    onClick={() => handlePageClick(total_pages)}
+                    className={`${css.button} ${total_pages === page ? css.active : ''}`}
+                >
+                    {total_pages}
+                </button>
+            )}
             <button className={css.button} onClick={nextPage} disabled={isLastPage}>Next</button>
         </div>
     );
