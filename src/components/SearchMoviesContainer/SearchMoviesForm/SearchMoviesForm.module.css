@@ -1,0 +1,45 @@
+.input_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.input_style input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input_style button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dark.input_style button {
+    background-color: rgb(43,77,142);
+    color: rgb(254,254,254);
+}
+
+.dark.input_style button:hover {
+    background-color: rgb(26,51,100);
+    color: rgb(254,254,254);
+}
+
+.light.input_style button {
+    background-color: rgb(43,77,142);
+    color: rgb(254,254,254);
+}
+
+.light.input_style button:hover {
+    background-color: rgb(26,51,100);
+    color: rgb(254,254,254);
+}
