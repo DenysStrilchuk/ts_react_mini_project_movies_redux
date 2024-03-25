@@ -22,7 +22,7 @@ interface IState {
 const initialState: IState = {
     page: null,
     genres: [],
-    total_pages: null,
+    total_pages: 20,
     total_results: null,
     movies: [],
     activeGenreId: null,
