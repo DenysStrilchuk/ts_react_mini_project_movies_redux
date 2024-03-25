@@ -1,8 +1,9 @@
 import {FC, PropsWithChildren} from 'react';
-import {IGenre} from "../../../interfaces";
 import {Badge, Button} from "react-bootstrap";
-import css from './Genre.module.css';
 import {useNavigate, useLocation} from "react-router-dom";
+
+import {IGenre} from "../../../interfaces";
+import css from './Genre.module.css';
 
 interface IProps extends PropsWithChildren {
     genre:IGenre

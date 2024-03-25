@@ -19,8 +19,7 @@ interface IProps extends PropsWithChildren {
 
 const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
                                    release_date, runtime, genres, onGenreClick}) => {
-    const activeGenreId = useAppSelector(state => state.genres.activeGenreId);
-    const {genreMoviesCount} = useAppSelector(state => state.genres);
+    const {genreMoviesCount, total_pages, activeGenreId} = useAppSelector(state => state.genres);
 
     return (
         <div className={css.MovieInfo}>
@@ -36,7 +35,7 @@ const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
                                 genre={genre}
                                 onGenreClick={onGenreClick}
                                 isActive={genre.id === activeGenreId}
-                                count={genreMoviesCount[genre.id] || 0}
+                                count={genreMoviesCount[genre.id] * total_pages || 0}
                             />
                         ))}
                     </div>
