@@ -1,12 +1,12 @@
-import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {useEffect} from "react";
 
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {moviesActions} from "../../../store";
 import {Movie} from "../Movie";
 import css from './Movies.module.css';
 
 const Movies = () => {
-    const {movies,page} = useAppSelector(state => state.movies);
+    const {movies, page} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Movies = () => {
 
 
     return (
-        <div  className={css.MoviesModule}>
+        <div className={css.MoviesModule}>
             <div className={css.movies_list}>
                 {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
             </div>

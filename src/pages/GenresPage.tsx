@@ -1,5 +1,6 @@
-import {Genres} from "../components";
 import {Outlet} from "react-router-dom";
+
+import {Genres} from "../components";
 
 const GenresPage = () => {
     return (

@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useParams} from "react-router-dom";
 
-import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
-import { genresAction } from "../../../store";
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../../hooks";
+import {genresAction} from "../../../store";
 import css from "./GenresPagination.module.css";
 
 const MoviesByGenresPagination = () => {
     const pageQuery = usePageQuery();
-    const { page, prevPage, nextPage, setPage} = pageQuery;
-    const { total_pages } = useAppSelector(state => state.genres);
+    const {page, prevPage, nextPage, setPage} = pageQuery;
+    const {total_pages} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();
 
     useEffect(() => {
-        dispatch(genresAction.getByGenreId({ id: parseInt(id), page: page }));
+        dispatch(genresAction.getByGenreId({id: parseInt(id), page: page}));
     }, [dispatch, id, page]);
 
     const isFirstPage = page === 1;
@@ -47,7 +47,7 @@ const MoviesByGenresPagination = () => {
                 </button>
             )}
             {showEllipsisStart && <span className={css.ellipsis}>...</span>}
-            {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((pageNumber) => (
+            {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map((pageNumber) => (
                 <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}

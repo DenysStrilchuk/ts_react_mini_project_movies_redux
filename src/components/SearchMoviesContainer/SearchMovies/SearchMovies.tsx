@@ -1,12 +1,12 @@
+import {useNavigate} from "react-router-dom";
+
 import {useAppSelector} from "../../../hooks";
 import {Movie} from "../../MoviesListConttainer";
 import css from './SearchMovies.module.css';
-import {useNavigate} from "react-router-dom";
-
 
 
 const SearchMovies = () => {
-    const { movies } = useAppSelector(state => state.search);
+    const {movies} = useAppSelector(state => state.search);
     const navigate = useNavigate();
 
     const goBack = () => {

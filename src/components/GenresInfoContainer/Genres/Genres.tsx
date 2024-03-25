@@ -26,7 +26,7 @@ const Genres = () => {
                                         genre={genre}
                                         onGenreClick={handleGenreClick}
                                         isActive={genre.id === activeGenreId}
-                                        count={genreMoviesCount[genre.id] * total_pages|| 0}
+                                        count={genreMoviesCount[genre.id] * total_pages || 0}
             />)}
         </div>
     );

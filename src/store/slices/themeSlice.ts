@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 interface IState {
     mode: 'light' | 'dark';
@@ -18,7 +18,7 @@ const themeSlice = createSlice({
     },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const {toggleTheme} = themeSlice.actions;
 
 const {reducer: themeReducer} = themeSlice;
 

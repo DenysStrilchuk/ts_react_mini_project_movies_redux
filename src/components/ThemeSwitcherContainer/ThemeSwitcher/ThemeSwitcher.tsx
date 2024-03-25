@@ -1,13 +1,13 @@
-import {useAppDispatch, useAppSelector} from "../../../hooks";
-import {RootState} from "../../../types";
-import {toggleTheme} from "../../../store";
 import ReactSwitch from "react-switch";
 import {useEffect} from "react";
 
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {RootState} from "../../../types";
+import {toggleTheme} from "../../../store";
 
 
 const ThemeSwitcher = () => {
-    const theme = useAppSelector((state:RootState) => state.theme.mode);
+    const theme = useAppSelector((state: RootState) => state.theme.mode);
     const dispatch = useAppDispatch();
 
     const toggleThemeHandler = () => {

@@ -1,25 +1,26 @@
-import {useAppDispatch, useAppSelector, usePageQuery} from "../../../hooks";
 import React, {useEffect} from "react";
+import {useParams} from "react-router-dom";
+
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../../hooks";
 import {searchActions} from "../../../store";
 import css from './SearchPagination.module.css';
-import {useParams} from "react-router-dom";
 
 const SearchPagination = () => {
     const {page, prevPage, nextPage, setPage} = usePageQuery();
-    const { query } = useParams<{ query: string }>();
-    const { total_pages } = useAppSelector(state => state.search);
+    const {query} = useParams<{ query: string }>();
+    const {total_pages} = useAppSelector(state => state.search);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(searchActions.getAll({ query, page}));
-    }, [dispatch,query,page]);
+        dispatch(searchActions.getAll({query, page}));
+    }, [dispatch, query, page]);
 
     const isFirstPage = page === 1;
     const isLastPage = page === total_pages;
 
     const handlePageClick = (pageNumber: number) => {
         setPage(pageNumber.toString());
-        dispatch(searchActions.getAll({ query, page: pageNumber }));
+        dispatch(searchActions.getAll({query, page: pageNumber}));
     };
 
     let startPage = Math.max(1, page - 5);
@@ -46,7 +47,7 @@ const SearchPagination = () => {
                 </button>
             )}
             {showEllipsisStart && <span className={css.ellipsis}>...</span>}
-            {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((pageNumber) => (
+            {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map((pageNumber) => (
                 <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}

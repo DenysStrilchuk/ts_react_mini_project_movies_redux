@@ -1,8 +1,8 @@
 import {FC, PropsWithChildren} from 'react';
 
+import {MyCustomStarRating} from "../StarRatingContainer";
 import {IGenre} from "../../interfaces";
 import css from './MovieInfo.module.css';
-import {MyCustomStarRating} from "../StarRatingContainer";
 import {Genre} from "../GenresInfoContainer";
 import {useAppSelector} from "../../hooks";
 
@@ -17,8 +17,10 @@ interface IProps extends PropsWithChildren {
     onGenreClick: (genre: IGenre) => void;
 }
 
-const MovieInfo: FC<IProps> = ({title, overview, vote_average, backdrop_path,
-                                   release_date, runtime, genres, onGenreClick}) => {
+const MovieInfo: FC<IProps> = ({
+                                   title, overview, vote_average, backdrop_path,
+                                   release_date, runtime, genres, onGenreClick
+                               }) => {
     const {genreMoviesCount, total_pages, activeGenreId} = useAppSelector(state => state.genres);
 
     return (

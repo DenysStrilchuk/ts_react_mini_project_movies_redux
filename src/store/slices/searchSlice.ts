@@ -1,23 +1,24 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {IMovie} from "../../interfaces";
 import {searchService} from "../../services/searchService";
-import {AxiosError} from "axios";
 
 interface IState {
     page: number | null;
     movies: IMovie[];
-    total_pages: number  | null;
+    total_pages: number | null;
     total_results: number | null;
 }
 
-const initialState:IState = {
+const initialState: IState = {
     page: null,
     movies: [],
     total_pages: null,
     total_results: null
 }
 
-const getAll = createAsyncThunk<IState, {query: string, page: number}>(
+const getAll = createAsyncThunk<IState, { query: string, page: number }>(
     'searchSlice/getAll',
     async ({query, page}, {rejectWithValue}) => {
         if (query.trim() !== "") {
@@ -38,9 +39,9 @@ const getAll = createAsyncThunk<IState, {query: string, page: number}>(
 );
 
 const searchSlice = createSlice({
-    name:'searchSlice',
+    name: 'searchSlice',
     initialState,
-    reducers:{},
+    reducers: {},
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {

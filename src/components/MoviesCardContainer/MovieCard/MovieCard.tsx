@@ -1,17 +1,20 @@
 import {FC, PropsWithChildren, useState} from 'react';
+
 import {IGenre, IMovie} from "../../../interfaces";
 import {MovieInfo} from "../../MovieInfoContainer";
 
 interface IProps extends PropsWithChildren {
-    movieCard:IMovie
+    movieCard: IMovie
 }
 
 const MovieCard: FC<IProps> = ({movieCard}) => {
-    const{title, overview, vote_average, genres, backdrop_path,
-        release_date, runtime}=movieCard;
+    const {
+        title, overview, vote_average, genres, backdrop_path,
+        release_date, runtime
+    } = movieCard;
     const [, setSelectedGenre] = useState<IGenre | null>(null);
 
-    const handleGenreClick = (genre:IGenre) => {
+    const handleGenreClick = (genre: IGenre) => {
         setSelectedGenre(genre);
     }
     return (

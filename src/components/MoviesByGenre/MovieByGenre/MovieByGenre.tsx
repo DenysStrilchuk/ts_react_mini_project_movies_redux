@@ -6,7 +6,7 @@ import css from "./MovieByGenre.module.css";
 import {MyCustomStarRating} from "../../StarRatingContainer";
 
 interface IProps extends PropsWithChildren {
-    movieByGenre:IMovie
+    movieByGenre: IMovie
 }
 
 const MovieByGenre: FC<IProps> = ({movieByGenre}) => {

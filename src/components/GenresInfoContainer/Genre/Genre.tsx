@@ -6,15 +6,14 @@ import {IGenre} from "../../../interfaces";
 import css from './Genre.module.css';
 
 interface IProps extends PropsWithChildren {
-    genre:IGenre
+    genre: IGenre
     onGenreClick: (genre: IGenre) => void;
     isActive: boolean;
     count: number;
 }
 
 
-
-const Genre: FC<IProps> = ({genre,  isActive, count}) => {
+const Genre: FC<IProps> = ({genre, isActive, count}) => {
     const {id, name} = genre;
     const navigate = useNavigate();
     const location = useLocation();

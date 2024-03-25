@@ -6,11 +6,11 @@ import {useNavigate} from "react-router-dom";
 import {MyCustomStarRating} from "../../StarRatingContainer";
 
 interface IProps extends PropsWithChildren {
-    movie:IMovie
+    movie: IMovie
 }
 
 const Movie: FC<IProps> = ({movie}) => {
-    const {id, title, poster_path,vote_average} = movie;
+    const {id, title, poster_path, vote_average} = movie;
     const navigate = useNavigate();
     return (
         <div onClick={() => navigate(`/movie/${id}`)} className={css.Movie}>

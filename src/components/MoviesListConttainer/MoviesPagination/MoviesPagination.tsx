@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 
-import { useAppDispatch, useAppSelector, usePageQuery } from "../../../hooks";
-import { moviesActions } from "../../../store";
-import css  from './Pagination.module.css';
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../../hooks";
+import {moviesActions} from "../../../store";
+import css from './Pagination.module.css';
 
 
 const MoviesPagination = () => {
-    const { page, prevPage, nextPage, setPage } = usePageQuery();
-    const { total_pages } = useAppSelector(state => state.movies);
+    const {page, prevPage, nextPage, setPage} = usePageQuery();
+    const {total_pages} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const MoviesPagination = () => {
                 </button>
             )}
             {showEllipsisStart && <span className={css.ellipsis}>...</span>}
-            {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((pageNumber) => (
+            {Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i).map((pageNumber) => (
                 <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}

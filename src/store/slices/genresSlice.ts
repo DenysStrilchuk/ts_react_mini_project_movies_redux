@@ -1,7 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {IGenre, IMovie} from "../../interfaces";
 import {genreService} from "../../services";
-import {AxiosError} from "axios";
 
 
 interface RootState {
@@ -30,12 +31,12 @@ const initialState: IState = {
 
 const getGenreMoviesCount = createAsyncThunk<{ [genreId: number]: number }, void>(
     'genresSlice/getGenreMoviesCount',
-    async (_, { getState, rejectWithValue }) => {
+    async (_, {getState, rejectWithValue}) => {
         try {
             const genres = (getState() as RootState).genres.genres;
             const counts: { [genreId: number]: number } = {};
             for (const genre of genres) {
-                const { data } = await genreService.getByGenreId(genre.id, 1);
+                const {data} = await genreService.getByGenreId(genre.id, 1);
                 counts[genre.id] = data.results.length;
             }
             return counts;
@@ -51,9 +52,9 @@ const getByGenreId = createAsyncThunk<
     { id: number; page: number }>
 (
     'genresSlice/getByGenreId',
-    async ({ id, page }, { rejectWithValue }) => {
+    async ({id, page}, {rejectWithValue}) => {
         try {
-            const { data } = await genreService.getByGenreId(id, page);
+            const {data} = await genreService.getByGenreId(id, page);
             return {results: data.results, total_pages: data.results.length, total_results: data.results.length}
         } catch (e) {
             const err = e as AxiosError;
@@ -62,21 +63,21 @@ const getByGenreId = createAsyncThunk<
     }
 );
 
-const getAll = createAsyncThunk<{genres:IGenre[]},void>(
+const getAll = createAsyncThunk<{ genres: IGenre[] }, void>(
     'genresSlice/getAll',
-    async (_,{rejectWithValue}) =>  {
+    async (_, {rejectWithValue}) => {
         try {
             const {data} = await genreService.getAll()
             return data
-        }catch (e) {
-            const err  = e as AxiosError;
+        } catch (e) {
+            const err = e as AxiosError;
             return rejectWithValue(err.response.data)
         }
     }
 )
 
 const genresSlice = createSlice({
-    name:'genresSlice',
+    name: 'genresSlice',
     initialState,
     reducers: {
         setActiveGenreId(state, action) {
@@ -88,7 +89,7 @@ const genresSlice = createSlice({
             .addCase(getAll.fulfilled, (state, action) => {
                 state.genres = (action.payload as { genres: IGenre[] }).genres;
             })
-            .addCase(getByGenreId.fulfilled, (state, action)  =>{
+            .addCase(getByGenreId.fulfilled, (state, action) => {
                 const {results, total_pages, total_results} = action.payload;
                 state.movies = results;
                 state.total_pages = total_pages;
@@ -101,7 +102,7 @@ const genresSlice = createSlice({
             }),
 })
 
-const  {reducer:genresReducer, actions} = genresSlice;
+const {reducer: genresReducer, actions} = genresSlice;
 const genresAction = {
     ...actions,
     getAll,
